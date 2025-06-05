@@ -1,0 +1,98 @@
+.itinerary-display {
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.itinerary-display h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.itinerary-display h3 {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.recommendation-summary {
+  font-style: italic;
+  color: #444;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 3px solid #007bff;
+}
+
+.day-card {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.day-card h3 {
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.activities-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.activity-item {
+  padding: 8px 0;
+  border-bottom: 1px dashed #e0e0e0;
+  font-size: 0.95em;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item strong {
+  color: #333;
+}
+
+.activity-item em {
+  color: #555;
+  font-style: normal;
+}
+
+.activity-item small {
+  color: #777;
+  font-size: 0.8em;
+  display: block; /* Or inline-block based on preference */
+  margin-top: 3px;
+}
+
+.itinerary-display-container {
+  /* Could use flexbox for side-by-side map and details later */
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+.itinerary-details {
+  /* flex: 1; */ /* Example for flex layout */
+  min-width: 300px; /* Ensure details don't get too squished */
+  padding: 10px; /* Keep padding consistent if it was on itinerary-display before */
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 10px; /* Space between details and map if stacked */
+}
+/* Reset padding on the old .itinerary-display if it's now .itinerary-details */
+.itinerary-display {
+  padding: 0;
+  margin-top: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}

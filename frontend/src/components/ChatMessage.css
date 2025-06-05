@@ -1,0 +1,71 @@
+.chat-message {
+  padding: 12px 18px; /* Increased padding */
+  margin: 8px 12px; /* Adjusted margin */
+  border-radius: 20px; /* More rounded bubbles */
+  max-width: 75%;
+  word-wrap: break-word;
+  line-height: 1.4; /* Improved readability */
+  font-size: 0.95rem;
+  position: relative; /* For potential future ::before/::after pseudo-elements like tails */
+}
+
+.user-message {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 5px; /* Keep this for a slight tail effect */
+}
+
+.ai-message {
+  background-color: #e9ecef; /* Lighter grey for AI messages */
+  color: #343a40; /* Darker text for AI messages for better contrast */
+  align-self: flex-start;
+  margin-right: auto;
+  border-bottom-left-radius: 5px; /* Keep this for a slight tail effect */
+}
+
+/* Style for AI error messages */
+.ai-message.error-message {
+  background-color: #f8d7da; /* Light red for errors */
+  color: #721c24; /* Dark red text for errors */
+  border: 1px solid #f5c6cb;
+}
+
+/* Style for AI loading messages */
+.ai-message.loading-message p { /* Target the <p> inside specifically if needed */
+  color: #495057; /* Slightly muted text for loading */
+  font-style: italic;
+}
+.ai-message.loading-message {
+    background-color: #f8f9fa; /* Very light grey for loading */
+}
+
+/* Simple tail-like effect (optional, can be refined) */
+/* .user-message::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #007bff;
+  border-bottom: 0;
+  border-left: 0;
+  margin-bottom: -1px;
+}
+
+.ai-message::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #e9ecef;
+  border-bottom: 0;
+  border-right: 0;
+  margin-bottom: -1px;
+} */
