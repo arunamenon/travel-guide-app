@@ -29,7 +29,6 @@ const MapDisplay = ({ activities, destinationName }) => {
     zoomLevel = 12;
   }
 
-
   return (
     <div className="map-container">
       <h4>Map of Itinerary Locations for {destinationName || "Selected Destination"}</h4>
@@ -37,7 +36,7 @@ const MapDisplay = ({ activities, destinationName }) => {
         height={400}
         center={[centerLat, centerLng]}
         zoom={zoomLevel}
-        attribution={false} // Opt-out of default OpenStreetMap attribution if desired & allowed
+        attribution={false}
         metaWheelZoom={true}
         metaWheelZoomWarning="Use Cmd/Ctrl + scroll to zoom map"
       >
@@ -45,21 +44,19 @@ const MapDisplay = ({ activities, destinationName }) => {
         {validActivities.map((activity, index) => (
           <Marker
             key={index}
-            width={40} // Increased marker size
+            width={40}
             anchor={[activity.latitude, activity.longitude]}
-            color="#007bff" // Marker color
-            payload={activity} // Store activity data in payload
+            color="#007bff"
+            payload={activity}
             onClick={({ event, anchor, payload }) => {
-              // Basic click handler: log to console or could open an InfoWindow
               console.log(`Clicked on: ${payload.placeName}`, payload);
-              // alert(`Location: ${payload.placeName}
-Time: ${payload.time}
-Activity: ${payload.description}`);
             }}
           />
         ))}
       </Map>
-      <p className="map-tooltip-info">Click on a marker to see details in the console. Use Cmd/Ctrl + scroll to zoom.</p>
+      <p className="map-tooltip-info">
+        Click on a marker to see details in the console. Use Cmd/Ctrl + scroll to zoom.
+      </p>
     </div>
   );
 };
