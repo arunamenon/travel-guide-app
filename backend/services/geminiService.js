@@ -68,8 +68,8 @@ function parseGeminiResponse(rawText) {
     if (itinerary.days.length === 0 && !itinerary.recommendationSummary && rawText.length > 50) {
         // If parsing completely fails, return the raw text as the summary
         // and indicate that the itinerary couldn't be structured.
-        itinerary.recommendationSummary = "Could not parse a structured itinerary. Raw AI Response:
-" + rawText.substring(0, 500) + (rawText.length > 500 ? "..." : "");
+        itinerary.recommendationSummary = "Could not parse a structured itinerary. Raw AI Response: " +
+          rawText.substring(0, 500) + (rawText.length > 500 ? "..." : "");
     } else if (itinerary.days.length === 0 && itinerary.recommendationSummary) {
         // Parsed summary but no itinerary items.
         // This is acceptable, Gemini might not always provide a full itinerary.
