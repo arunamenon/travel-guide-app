@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'; // Example endpoint
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent';
 
 // --- Helper Parsing Functions ---
 
@@ -146,7 +146,15 @@ Do not include any conversational text outside of this structured format after y
   try {
     const response = await axios.post(
       `${GEMINI_API_URL}?key=${GEMINI_API_KEY}`,
-      { contents: [{ parts: [{ text: prompt }] }] },
+      { 
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          maxOutputTokens: 2048,
+          temperature: 0.7,
+          topP: 0.8,
+          topK: 40
+        }
+      },
       { headers: { 'Content-Type': 'application/json' } }
     );
 
@@ -154,10 +162,23 @@ Do not include any conversational text outside of this structured format after y
       const rawTextResponse = response.data.candidates[0].content.parts[0].text;
       const parsedData = parseGeminiResponse(rawTextResponse);
 
+      // If parsing fails, return the raw response in a structured format
+      if (!parsedData.days || parsedData.days.length === 0) {
+        return {
+          reply: rawTextResponse,
+          itinerary: {
+            recommendationSummary: rawTextResponse,
+            destinationName: "Unknown Destination",
+            days: []
+          },
+          rawText: rawTextResponse
+        };
+      }
+
       return {
-        reply: parsedData.recommendationSummary || "Successfully received data, but summary was empty.", // Ensure there's always a reply
+        reply: parsedData.recommendationSummary || "Successfully received data, but summary was empty.",
         itinerary: parsedData,
-        rawText: rawTextResponse // For debugging or if frontend wants to show raw
+        rawText: rawTextResponse
       };
     } else {
       console.error('Unexpected response structure from Gemini API:', response.data);
